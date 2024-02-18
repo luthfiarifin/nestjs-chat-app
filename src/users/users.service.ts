@@ -50,7 +50,7 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    const user = await this.userModel.findById(id).populate('interests').exec();
+    const user = await this.userModel.findById(id).exec();
 
     if (!user) {
       throw new NotFoundException('Could not find user.');

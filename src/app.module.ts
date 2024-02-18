@@ -11,7 +11,15 @@ import { AuthModule } from './auth/auth.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    MongooseModule.forRoot(process.env.MONGO_URI),
+    MongooseModule.forRoot(
+      process.env.MONGO_URI,
+      {
+        connectionFactory: (connection) => {
+          connection.plugin(require('mongoose-autopopulate'));
+          return connection;
+        },
+      },
+    ),
     CommandModule,
     UsersModule,
     InterestsModule,

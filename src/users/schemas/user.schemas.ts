@@ -51,7 +51,7 @@ export class User {
     @Prop()
     weight: number;
 
-    @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Interest.name }])
+    @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Interest.name, autopopulate: true }])
     interests: Interest[]
 }
 
