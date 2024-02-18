@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { RegisterAuthDto } from '../auth/dto/register-auth.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schemas/user.schemas';
 import { Model } from 'mongoose';
+import { PasswordHashHelper } from 'src/helper/hash/password-hash.helper';
 
 @Injectable()
 export class UsersService {
@@ -12,14 +13,40 @@ export class UsersService {
     @InjectModel(User.name) private userModel: Model<User>,
   ) { }
 
-  async create(dto: CreateUserDto) {
-    const createdUser = new this.userModel(dto);
+  async create(dto: RegisterAuthDto) {
+    const passwordGenerator = await PasswordHashHelper.hash(dto.password);
+    dto.password = passwordGenerator.hash;
+
+    const createdUser = new this.userModel({
+      ...dto,
+      password_key: passwordGenerator.passKey,
+    });
     const savedUser = await createdUser.save();
 
     return {
       message: 'User created successfully',
       data: savedUser,
     };
+  }
+
+  async validateUser(email: string, password: string) {
+    const user = await this.findByEmail(email);
+
+    if (!user) {
+      throw new NotFoundException('Could not find user.');
+    }
+
+    const isPasswordCorrect = await PasswordHashHelper.comparePassword(password, user.password_key, user.password);
+
+    if (!isPasswordCorrect) {
+      throw new NotFoundException('Could not find user.');
+    }
+
+    return user;
+  }
+
+  private async findByEmail(email: string) {
+    return await this.userModel.findOne({ email }).exec();
   }
 
   async findOne(id: string) {

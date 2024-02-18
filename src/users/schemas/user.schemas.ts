@@ -32,6 +32,11 @@ export class User {
     })
     password: string;
 
+    @Prop({
+        required: true
+    })
+    password_key: string;
+
     @Prop()
     about: string;
 
