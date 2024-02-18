@@ -7,6 +7,11 @@ export class SwaggerConfig {
             .setTitle('NestJS Chat App API')
             .setDescription('NestJS Chat App API')
             .setVersion('1.0')
+            .addBearerAuth({
+                type: 'http',
+                scheme: 'bearer',
+                bearerFormat: 'JWT',
+            })
             .build();
 
         const document = SwaggerModule.createDocument(app, config);

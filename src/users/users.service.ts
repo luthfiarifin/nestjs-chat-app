@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { RegisterAuthDto } from '../auth/dto/register-auth.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -21,16 +21,20 @@ export class UsersService {
       ...dto,
       password_key: passwordGenerator.passKey,
     });
-    const savedUser = await createdUser.save();
 
-    return {
-      message: 'User created successfully',
-      data: savedUser,
-    };
+    try {
+      return await createdUser.save();
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
   async validateUser(email: string, password: string) {
-    const user = await this.findByEmail(email);
+    const user = await this.userModel
+      .findOne({ email })
+      .select('+password')
+      .select('+password_key')
+      .exec();
 
     if (!user) {
       throw new NotFoundException('Could not find user.');
@@ -43,10 +47,6 @@ export class UsersService {
     }
 
     return user;
-  }
-
-  private async findByEmail(email: string) {
-    return await this.userModel.findOne({ email }).exec();
   }
 
   async findOne(id: string) {
