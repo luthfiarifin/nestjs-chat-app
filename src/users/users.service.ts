@@ -71,17 +71,4 @@ export class UsersService {
       data: updatedUser,
     };
   }
-
-  async remove(id: string) {
-    const removedUser = await this.userModel.findByIdAndDelete(id).exec();
-
-    if (!removedUser) {
-      throw new NotFoundException('Could not find user.');
-    }
-
-    return {
-      message: 'User deleted successfully',
-      data: removedUser,
-    };
-  }
 }
