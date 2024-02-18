@@ -10,6 +10,10 @@ export class InterestsService {
     @InjectModel(Interest.name) private interestModel: Model<Interest>,
   ) { }
 
+  async getAll() {
+    return await this.interestModel.find().exec();
+  }
+
   async bulkInsert(interests: string[]) {
     const interestsToInsert = interests.map(interest => ({ name: interest }));
     const insertedInterests = await this.interestModel.insertMany(interestsToInsert);
