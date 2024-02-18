@@ -14,4 +14,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
 
     @ApiProperty()
     readonly weight: number;
+
+    @ApiProperty()
+    readonly interests: number[];
 }
