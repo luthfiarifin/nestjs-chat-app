@@ -22,9 +22,29 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Overview
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+NestJS-MongoDB-Chat-App is a robust and scalable real-time chat application designed to provide a seamless communication experience. Leveraging the power of [NestJS](https://nestjs.com/) for server-side logic, [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/) for efficient data storage and ORM, and WebSockets for instantaneous bi-directional communication, this application offers a feature-rich environment for users to engage in peer-to-peer conversations and participate in room-based discussions.
+
+## Features
+
+- **User Authentication:** Secure user authentication using [Passport](http://www.passportjs.org/) and [JWT](https://jwt.io/), ensuring a safe and personalized experience for each user.
+- **Peer-to-Peer Messaging:** Enjoy direct and private conversations with other users in real-time.
+- **Room-Based Conversations:** Join or create chat rooms to engage in group discussions on various topics.
+- **WebSockets Integration:** Harness the power of WebSockets for low-latency communication, providing a responsive and dynamic chat experience.
+- **Mongoose ORM:** Benefit from the elegant [Mongoose](https://mongoosejs.com/) ORM for MongoDB, simplifying data modeling and interaction with the database.
+- **NestJS Command Seeding:** Utilize [NestJS Command](https://docs.nestjs.com/cli/commands) for convenient seeding of initial data.
+
+## Technologies Used
+
+- [NestJS](https://nestjs.com/): A progressive Node.js framework for building efficient and scalable server-side applications.
+- [MongoDB](https://www.mongodb.com/): A NoSQL database for flexible and scalable data storage.
+- [Mongoose](https://mongoosejs.com/): An elegant MongoDB object modeling tool for Node.js.
+- [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API): Facilitates real-time, bidirectional communication between clients and servers.
+- [Socket.IO](https://socket.io/): A library for real-time web applications, enabling real-time, bi-directional communication.
+- [Passport](http://www.passportjs.org/): Simple, unobtrusive authentication for Node.js.
+- [JWT](https://jwt.io/): JSON Web Tokens for secure authentication.
+- [NestJS Command](https://docs.nestjs.com/cli/commands): Convenient command-line tools for NestJS applications.
 
 ## Installation
 
@@ -45,29 +65,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Contributing
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+We welcome contributions! If you have ideas for new features, find bugs, or want to improve the documentation, feel free to open issues and pull requests.
