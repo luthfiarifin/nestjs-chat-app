@@ -8,7 +8,6 @@ export type ChatDocument = HydratedDocument<Chat>;
 @Schema({
     timestamps: true,
     versionKey: false,
-
 })
 export class Chat {
 
@@ -18,7 +17,7 @@ export class Chat {
     @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: User.name, autopopulate: true })
     sender_id: User;
 
-    @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: Room.name, autopopulate: true })
+    @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: Room.name })
     room_id: Room;
 }
 

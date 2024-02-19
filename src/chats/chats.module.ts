@@ -12,5 +12,8 @@ import { Chat, ChatSchema } from './schemas/chat.schemas';
     ChatsGateway,
     ChatsService,
   ],
+  exports: [
+    ChatsService,
+  ],
 })
 export class ChatsModule { }
